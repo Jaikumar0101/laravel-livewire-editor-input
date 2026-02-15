@@ -1,45 +1,11 @@
 <div 
-    x-data="ckeditorComponent({
+    x-data="{
         editorId: '{{ $editorId }}',
         content: @entangle('content'),
         config: @js($editorConfig),
         readOnly: @entangle('readOnly'),
         showCounter: {{ $showCounter ? 'true' : 'false' }},
         autoSave: {{ $autoSave ? 'true' : 'false' }},
-    })"
-    x-init="initEditor()"
-    class="livewire-editor-container"
-    wire:ignore
->
-    <!-- Editor Container -->
-    <textarea 
-        :id="editorId" 
-        class="ckeditor-editor"
-    ></textarea>
-
-    <!-- Counter -->
-    <div x-show="showCounter" class="editor-counter mt-2 text-sm text-gray-600">
-        <span x-text="counterText"></span>
-    </div>
-
-    <!-- Auto-save indicator -->
-    <div x-show="autoSave && isSaving" class="auto-save-indicator mt-2 text-sm text-blue-600">
-        <span>Saving...</span>
-    </div>
-
-    <div x-show="autoSave && lastSaved" class="auto-save-indicator mt-2 text-sm text-green-600">
-        <span x-text="'Last saved: ' + lastSaved"></span>
-    </div>
-</div>
-
-@script
-Alpine.data('ckeditorComponent', (options) => ({
-        editorId: options.editorId,
-        content: options.content,
-        config: options.config,
-        readOnly: options.readOnly,
-        showCounter: options.showCounter,
-        autoSave: options.autoSave,
         editor: null,
         wordCount: 0,
         charCount: 0,
@@ -64,12 +30,10 @@ Alpine.data('ckeditorComponent', (options) => ({
             this.editor = CKEDITOR.replace(this.editorId, this.config);
             
             this.editor.on('instanceReady', () => {
-                // Set initial content
                 if (this.content) {
                     this.editor.setData(this.content);
                 }
 
-                // Set read-only if needed
                 if (this.readOnly) {
                     this.editor.setReadOnly(true);
                 }
@@ -77,7 +41,6 @@ Alpine.data('ckeditorComponent', (options) => ({
                 console.log('CKEditor 4 initialized successfully');
             });
 
-            // Listen for changes
             this.editor.on('change', () => {
                 const data = this.editor.getData();
                 this.content = data;
@@ -88,7 +51,6 @@ Alpine.data('ckeditorComponent', (options) => ({
                 }
             });
 
-            // Setup Livewire listeners
             this.setupLivewireListeners();
         },
 
@@ -148,5 +110,28 @@ Alpine.data('ckeditorComponent', (options) => ({
                 console.log('CKEditor 4 destroyed');
             }
         }
-    }))
-@endscript
+    }"
+    x-init="initEditor()"
+    class="livewire-editor-container"
+    wire:ignore
+>
+    <!-- Editor Container -->
+    <textarea 
+        :id="editorId" 
+        class="ckeditor-editor"
+    ></textarea>
+
+    <!-- Counter -->
+    <div x-show="showCounter" class="editor-counter mt-2 text-sm text-gray-600">
+        <span x-text="counterText"></span>
+    </div>
+
+    <!-- Auto-save indicator -->
+    <div x-show="autoSave && isSaving" class="auto-save-indicator mt-2 text-sm text-blue-600">
+        <span>Saving...</span>
+    </div>
+
+    <div x-show="autoSave && lastSaved" class="auto-save-indicator mt-2 text-sm text-green-600">
+        <span x-text="'Last saved: ' + lastSaved"></span>
+    </div>
+</div>

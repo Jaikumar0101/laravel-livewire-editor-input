@@ -1,5 +1,5 @@
 <div 
-    x-data="tiptapComponent({
+    x-data="{
         editorId: '{{ $editorId }}',
         content: @entangle('content'),
         extensions: @js($extensions),
@@ -8,65 +8,6 @@
         showCounter: {{ $showCounter ? 'true' : 'false' }},
         autoSave: {{ $autoSave ? 'true' : 'false' }},
         showToolbar: {{ $showToolbar ? 'true' : 'false' }},
-    })"
-    x-init="initEditor()"
-    class="livewire-editor-container tiptap-wrapper"
-    wire:ignore
->
-    <!-- Toolbar -->
-    <div x-show="showToolbar" class="tiptap-toolbar" :style="toolbarStyles">
-        <template x-for="(button, index) in toolbarButtons" :key="index">
-            <div class="toolbar-item">
-                <template x-if="button.type === 'separator'">
-                    <div class="toolbar-separator"></div>
-                </template>
-                
-                <template x-if="button.type !== 'separator'">
-                    <button
-                        type="button"
-                        @click="executeCommand(button.type, button.level || null)"
-                        :class="{'is-active': isActive(button.type, button.level)}"
-                        :title="button.title"
-                        class="toolbar-button"
-                        x-text="button.icon"
-                    ></button>
-                </template>
-            </div>
-        </template>
-    </div>
-
-    <!-- Editor Container -->
-    <div 
-        :id="editorId" 
-        class="tiptap-editor"
-        :style="editorStyles"
-    ></div>
-
-    <!-- Counter -->
-    <div x-show="showCounter" class="editor-counter mt-2 text-sm text-gray-600">
-        <span x-text="counterText"></span>
-    </div>
-
-    <!-- Auto-save indicator -->
-    <div x-show="autoSave && isSaving" class="auto-save-indicator mt-2 text-sm text-blue-600">
-        <span>Saving...</span>
-    </div>
-
-    <div x-show="autoSave && lastSaved" class="auto-save-indicator mt-2 text-sm text-green-600">
-        <span x-text="'Last saved: ' + lastSaved"></span>
-    </div>
-</div>
-
-@script
-Alpine.data('tiptapComponent', (options) => ({
-        editorId: options.editorId,
-        content: options.content,
-        extensions: options.extensions,
-        toolbarButtons: options.toolbarButtons,
-        readOnly: options.readOnly,
-        showCounter: options.showCounter,
-        autoSave: options.autoSave,
-        showToolbar: options.showToolbar,
         editor: null,
         wordCount: 0,
         charCount: 0,
@@ -139,34 +80,28 @@ Alpine.data('tiptapComponent', (options) => ({
             const extensions = [];
             const { StarterKit } = window.TiptapStarterKit;
 
-            // Add StarterKit
             if (this.extensions.StarterKit) {
                 extensions.push(StarterKit.configure(this.extensions.StarterKit));
             } else {
                 extensions.push(StarterKit);
             }
 
-            // Add Underline
             if (this.extensions.Underline && window.TiptapUnderline) {
                 extensions.push(window.TiptapUnderline.Underline);
             }
 
-            // Add TextAlign
             if (this.extensions.TextAlign && window.TiptapTextAlign) {
                 extensions.push(window.TiptapTextAlign.TextAlign.configure(this.extensions.TextAlign));
             }
 
-            // Add Link
             if (this.extensions.Link && window.TiptapLink) {
                 extensions.push(window.TiptapLink.Link.configure(this.extensions.Link));
             }
 
-            // Add Image
             if (this.extensions.Image && window.TiptapImage) {
                 extensions.push(window.TiptapImage.Image.configure(this.extensions.Image));
             }
 
-            // Add Table extensions
             if (this.extensions.Table && window.TiptapTable) {
                 extensions.push(window.TiptapTable.Table.configure(this.extensions.Table));
                 if (window.TiptapTableRow) extensions.push(window.TiptapTableRow.TableRow);
@@ -174,17 +109,14 @@ Alpine.data('tiptapComponent', (options) => ({
                 if (window.TiptapTableHeader) extensions.push(window.TiptapTableHeader.TableHeader);
             }
 
-            // Add TextStyle
             if (this.extensions.TextStyle && window.TiptapTextStyle) {
                 extensions.push(window.TiptapTextStyle.TextStyle);
             }
 
-            // Add Color
             if (this.extensions.Color && window.TiptapColor) {
                 extensions.push(window.TiptapColor.Color);
             }
 
-            // Add Highlight
             if (this.extensions.Highlight && window.TiptapHighlight) {
                 extensions.push(window.TiptapHighlight.Highlight.configure(this.extensions.Highlight));
             }
@@ -305,5 +237,51 @@ Alpine.data('tiptapComponent', (options) => ({
                 console.log('TipTap destroyed');
             }
         }
-    }))
-@endscript
+    }"
+    x-init="initEditor()"
+    class="livewire-editor-container tiptap-wrapper"
+    wire:ignore
+>
+    <!-- Toolbar -->
+    <div x-show="showToolbar" class="tiptap-toolbar" :style="toolbarStyles">
+        <template x-for="(button, index) in toolbarButtons" :key="index">
+            <div class="toolbar-item">
+                <template x-if="button.type === 'separator'">
+                    <div class="toolbar-separator"></div>
+                </template>
+                
+                <template x-if="button.type !== 'separator'">
+                    <button
+                        type="button"
+                        @click="executeCommand(button.type, button.level || null)"
+                        :class="{'is-active': isActive(button.type, button.level)}"
+                        :title="button.title"
+                        class="toolbar-button"
+                        x-text="button.icon"
+                    ></button>
+                </template>
+            </div>
+        </template>
+    </div>
+
+    <!-- Editor Container -->
+    <div 
+        :id="editorId" 
+        class="tiptap-editor"
+        :style="editorStyles"
+    ></div>
+
+    <!-- Counter -->
+    <div x-show="showCounter" class="editor-counter mt-2 text-sm text-gray-600">
+        <span x-text="counterText"></span>
+    </div>
+
+    <!-- Auto-save indicator -->
+    <div x-show="autoSave && isSaving" class="auto-save-indicator mt-2 text-sm text-blue-600">
+        <span>Saving...</span>
+    </div>
+
+    <div x-show="autoSave && lastSaved" class="auto-save-indicator mt-2 text-sm text-green-600">
+        <span x-text="'Last saved: ' + lastSaved"></span>
+    </div>
+</div>

@@ -1,46 +1,11 @@
 <div 
-    x-data="ckeditor5Component({
+    x-data="{
         editorId: '{{ $editorId }}',
         content: @entangle('content'),
         config: @js($editorConfig),
         readOnly: @entangle('readOnly'),
         showCounter: {{ $showCounter ? 'true' : 'false' }},
         autoSave: {{ $autoSave ? 'true' : 'false' }},
-    })"
-    x-init="initEditor()"
-    class="livewire-editor-container"
-    wire:ignore
->
-    <!-- Editor Container -->
-    <div 
-        :id="editorId" 
-        class="ckeditor5-editor"
-        :style="editorStyles"
-    ></div>
-
-    <!-- Counter -->
-    <div x-show="showCounter" class="editor-counter mt-2 text-sm text-gray-600">
-        <span x-text="counterText"></span>
-    </div>
-
-    <!-- Auto-save indicator -->
-    <div x-show="autoSave && isSaving" class="auto-save-indicator mt-2 text-sm text-blue-600">
-        <span>Saving...</span>
-    </div>
-
-    <div x-show="autoSave && lastSaved" class="auto-save-indicator mt-2 text-sm text-green-600">
-        <span x-text="'Last saved: ' + lastSaved"></span>
-    </div>
-</div>
-
-@script
-Alpine.data('ckeditor5Component', (options) => ({
-        editorId: options.editorId,
-        content: options.content,
-        config: options.config,
-        readOnly: options.readOnly,
-        showCounter: options.showCounter,
-        autoSave: options.autoSave,
         editor: null,
         wordCount: 0,
         charCount: 0,
@@ -75,17 +40,14 @@ Alpine.data('ckeditor5Component', (options) => ({
                 .then(editor => {
                     this.editor = editor;
                     
-                    // Set initial content
                     if (this.content) {
                         editor.setData(this.content);
                     }
 
-                    // Set read-only if needed
                     if (this.readOnly) {
                         editor.enableReadOnlyMode(this.editorId);
                     }
 
-                    // Listen for changes
                     editor.model.document.on('change:data', () => {
                         const data = editor.getData();
                         this.content = data;
@@ -96,7 +58,6 @@ Alpine.data('ckeditor5Component', (options) => ({
                         }
                     });
 
-                    // Word count plugin (if available)
                     if (editor.plugins.has('WordCount')) {
                         const wordCountPlugin = editor.plugins.get('WordCount');
                         wordCountPlugin.on('update', (evt, stats) => {
@@ -111,12 +72,10 @@ Alpine.data('ckeditor5Component', (options) => ({
                     console.error('CKEditor 5 initialization error:', error);
                 });
 
-            // Listen for Livewire events
             this.setupLivewireListeners();
         },
 
         updateCounter(html) {
-            // Simple counter if WordCount plugin is not available
             if (!this.editor.plugins.has('WordCount')) {
                 const text = html.replace(/<[^>]*>/g, '');
                 this.wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
@@ -137,13 +96,11 @@ Alpine.data('ckeditor5Component', (options) => ({
         performAutoSave() {
             this.isSaving = true;
             
-            // Dispatch auto-save event
             this.$wire.dispatch('editor-auto-save', {
                 editorId: this.editorId,
                 content: this.content
             });
 
-            // Simulate save completion
             setTimeout(() => {
                 this.isSaving = false;
                 this.lastSaved = new Date().toLocaleTimeString();
@@ -151,21 +108,18 @@ Alpine.data('ckeditor5Component', (options) => ({
         },
 
         setupLivewireListeners() {
-            // Listen for content update from Livewire
             Livewire.on('set-editor-content', (data) => {
                 if (data.editorId === this.editorId && this.editor) {
                     this.editor.setData(data.content);
                 }
             });
 
-            // Listen for clear content
             Livewire.on('clear-editor-content', (data) => {
                 if (data.editorId === this.editorId && this.editor) {
                     this.editor.setData('');
                 }
             });
 
-            // Listen for read-only toggle
             Livewire.on('set-editor-readonly', (data) => {
                 if (data.editorId === this.editorId && this.editor) {
                     if (data.readOnly) {
@@ -184,5 +138,29 @@ Alpine.data('ckeditor5Component', (options) => ({
                     .catch(error => console.error(error));
             }
         }
-    }))
-@endscript
+    }"
+    x-init="initEditor()"
+    class="livewire-editor-container"
+    wire:ignore
+>
+    <!-- Editor Container -->
+    <div 
+        :id="editorId" 
+        class="ckeditor5-editor"
+        :style="editorStyles"
+    ></div>
+
+    <!-- Counter -->
+    <div x-show="showCounter" class="editor-counter mt-2 text-sm text-gray-600">
+        <span x-text="counterText"></span>
+    </div>
+
+    <!-- Auto-save indicator -->
+    <div x-show="autoSave && isSaving" class="auto-save-indicator mt-2 text-sm text-blue-600">
+        <span>Saving...</span>
+    </div>
+
+    <div x-show="autoSave && lastSaved" class="auto-save-indicator mt-2 text-sm text-green-600">
+        <span x-text="'Last saved: ' + lastSaved"></span>
+    </div>
+</div>
