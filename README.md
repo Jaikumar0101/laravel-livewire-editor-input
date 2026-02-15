@@ -64,6 +64,8 @@ php artisan vendor:publish --tag=livewire-editor
 
 ## 🚀 Quick Start
 
+> **⚠️ Important:** These are **Livewire components**, not Blade components. Use `<livewire:...>` syntax, **NOT** `<x-livewire-editor::...>`.
+
 ### 1. Add Assets to Your Layout
 
 ```blade
@@ -134,6 +136,8 @@ class PostEditor extends Component
 
 ## 📝 Available Editors
 
+> **Usage Note:** All editors below are **Livewire components**. Use `<livewire:...>` syntax.
+
 ### CKEditor 5 (Recommended)
 
 Modern, modular editor with extensive features:
@@ -166,6 +170,86 @@ Classic, reliable editor:
 <livewire:forms.editor.ckeditor 
     :content="$post->body"
     :height="400"
+/>
+```
+
+## 💡 Common Usage Examples
+
+### Basic Usage (Direct in Blade)
+```blade
+<!-- Simple editor -->
+<livewire:forms.editor.ckeditor5 wire:model="content" />
+
+<!-- With placeholder and theme -->
+<livewire:forms.editor.ckeditor5 
+    wire:model="content"
+    :config="['placeholder' => 'Start typing...']"
+    theme="dark"
+/>
+```
+
+### In a Form
+```blade
+<form wire:submit="save">
+    <div>
+        <label for="title">Title</label>
+        <input type="text" wire:model="title" />
+    </div>
+    
+    <div>
+        <label>Content</label>
+        <livewire:forms.editor.ckeditor5 wire:model="content" />
+        @error('content') 
+            <span class="text-red-500">{{ $message }}</span> 
+        @enderror
+    </div>
+    
+    <button type="submit">Save</button>
+</form>
+```
+
+### Multiple Editors on Same Page
+```blade
+<div>
+    <h3>Introduction</h3>
+    <livewire:forms.editor.ckeditor5 
+        wire:model="introduction" 
+        key="intro-editor"
+    />
+</div>
+
+<div>
+    <h3>Main Content</h3>
+    <livewire:forms.editor.ckeditor5 
+        wire:model="content" 
+        key="main-editor"
+    />
+</div>
+
+<div>
+    <h3>Conclusion</h3>
+    <livewire:forms.editor.tiptap-editor 
+        wire:model="conclusion" 
+        key="conclusion-editor"
+    />
+</div>
+```
+
+### With Initial Content
+```blade
+<!-- In your Livewire component -->
+<livewire:forms.editor.ckeditor5 
+    :content="$post->body"
+    wire:model="body"
+/>
+```
+
+### Read-Only Mode
+```blade
+<!-- In your Livewire component -->
+<livewire:forms.editor.ckeditor5 
+    :content="$post->body"
+    :readOnly="true"
 />
 ```
 
@@ -490,6 +574,20 @@ public function toggleReadOnly()
 ```
 
 ## 🔧 Troubleshooting
+
+### ❌ Error: "Undefined variable $editorId"
+
+**Problem:** You're using Blade component syntax instead of Livewire component syntax.
+
+```blade
+<!-- ❌ WRONG - This will cause errors -->
+<x-livewire-editor::forms.editor.ckeditor5 />
+
+<!-- ✅ CORRECT - Use this instead -->
+<livewire:forms.editor.ckeditor5 />
+```
+
+**Why:** These are Livewire components, not Blade components. Always use `<livewire:...>` syntax.
 
 ### Editors Not Loading
 
