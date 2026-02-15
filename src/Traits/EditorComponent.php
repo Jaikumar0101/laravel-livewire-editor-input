@@ -1,6 +1,6 @@
 <?php
 
-namespace YourVendor\LivewireEditor\Traits;
+namespace Jaikumar0101\LivewireEditor\Traits;
 
 trait EditorComponent
 {

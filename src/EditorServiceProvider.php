@@ -1,13 +1,13 @@
 <?php
 
-namespace YourVendor\LivewireEditor;
+namespace Jaikumar0101\LivewireEditor;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
-use YourVendor\LivewireEditor\Components\Forms\Editor\CkEditor;
-use YourVendor\LivewireEditor\Components\Forms\Editor\CkEditor5;
-use YourVendor\LivewireEditor\Components\Forms\Editor\TipTapEditor;
+use Jaikumar0101\LivewireEditor\Components\Forms\Editor\CkEditor;
+use Jaikumar0101\LivewireEditor\Components\Forms\Editor\CkEditor5;
+use Jaikumar0101\LivewireEditor\Components\Forms\Editor\TipTapEditor;
 
 class EditorServiceProvider extends ServiceProvider
 {
@@ -19,7 +19,7 @@ class EditorServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton('livewire-editor', function ($app) {
-            return new \YourVendor\LivewireEditor\LivewireEditorManager($app);
+            return new \Jaikumar0101\LivewireEditor\LivewireEditorManager($app);
         });
     }
 
@@ -43,21 +43,21 @@ class EditorServiceProvider extends ServiceProvider
     {
         // Main asset directive
         Blade::directive('livewireEditorAssets', function ($editor = null) {
-            return "<?php echo \YourVendor\LivewireEditor\Facades\LivewireEditor::assets({$editor}); ?>";
+            return "<?php echo \Jaikumar0101\LivewireEditor\Facades\LivewireEditor::assets({$editor}); ?>";
         });
 
         // Individual editor asset directives
         Blade::directive('livewireEditorCss', function () {
-            return "<?php echo \YourVendor\LivewireEditor\Facades\LivewireEditor::css(); ?>";
+            return "<?php echo \Jaikumar0101\LivewireEditor\Facades\LivewireEditor::css(); ?>";
         });
 
         Blade::directive('livewireEditorJs', function ($editor = null) {
-            return "<?php echo \YourVendor\LivewireEditor\Facades\LivewireEditor::js({$editor}); ?>";
+            return "<?php echo \Jaikumar0101\LivewireEditor\Facades\LivewireEditor::js({$editor}); ?>";
         });
 
         // Alpine.js directive (if not already included)
         Blade::directive('livewireEditorAlpine', function () {
-            return "<?php echo \YourVendor\LivewireEditor\Facades\LivewireEditor::alpineJs(); ?>";
+            return "<?php echo \Jaikumar0101\LivewireEditor\Facades\LivewireEditor::alpineJs(); ?>";
         });
     }
 

@@ -77,6 +77,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support for Livewire 3.x
 - Support for Laravel 10.x and 11.x
 
-[Unreleased]: https://github.com/yourvendor/livewire-editor/compare/v2.0.0...HEAD
-[2.0.0]: https://github.com/yourvendor/livewire-editor/compare/v1.0.0...v2.0.0
-[1.0.0]: https://github.com/yourvendor/livewire-editor/releases/tag/v1.0.0
+[Unreleased]: https://github.com/Jaikumar0101/laravel-livewire-editor-input/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/Jaikumar0101/laravel-livewire-editor-input/compare/v1.0.0...v2.0.0
+[1.0.0]: https://github.com/Jaikumar0101/laravel-livewire-editor-input/releases/tag/v1.0.0

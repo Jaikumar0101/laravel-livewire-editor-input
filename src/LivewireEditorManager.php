@@ -1,6 +1,6 @@
 <?php
 
-namespace YourVendor\LivewireEditor;
+namespace Jaikumar0101\LivewireEditor;
 
 use Illuminate\Support\Facades\App;
 

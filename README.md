@@ -1,7 +1,7 @@
 # Laravel Livewire Editor Package 🚀
 
-[![Latest Version](https://img.shields.io/packagist/v/yourvendor/livewire-editor.svg)](https://packagist.org/packages/yourvendor/livewire-editor)
-[![License](https://img.shields.io/packagist/l/yourvendor/livewire-editor.svg)](https://packagist.org/packages/yourvendor/livewire-editor)
+[![Latest Version](https://img.shields.io/packagist/v/jaikumar0101/livewire-editor-input.svg)](https://packagist.org/packages/jaikumar0101/livewire-editor-input)
+[![License](https://img.shields.io/packagist/l/jaikumar0101/livewire-editor-input.svg)](https://packagist.org/packages/jaikumar0101/livewire-editor-input)
 
 A **premium**, **production-ready** Laravel package providing powerful WYSIWYG editor components for Livewire 3, powered by Alpine.js. Choose from CKEditor 4, CKEditor 5, or TipTap with extensive customization options.
 
@@ -33,7 +33,7 @@ A **premium**, **production-ready** Laravel package providing powerful WYSIWYG e
 Install via Composer:
 
 ```bash
-composer require yourvendor/livewire-editor
+composer require jaikumar0101/livewire-editor-input
 ```
 
 ### Publish Assets
@@ -527,7 +527,7 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for det
 
 ## 🐛 Issues
 
-Found a bug? Please [open an issue](https://github.com/yourvendor/livewire-editor/issues).
+Found a bug? Please [open an issue](https://github.com/Jaikumar0101/laravel-livewire-editor-input/issues).
 
 ## 📄 License
 

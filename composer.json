@@ -1,5 +1,5 @@
 {
-    "name": "yourvendor/livewire-editor",
+    "name": "jaikumar0101/livewire-editor-input",
     "description": "Premium Laravel Livewire WYSIWYG Editor Package with Alpine.js - CKEditor 4, CKEditor 5, and TipTap support",
     "type": "library",
     "keywords": [
@@ -18,8 +18,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Your Name",
-            "email": "your.email@example.com"
+            "name": "Jaikumar",
+            "email": "jaikumar43044@gmail.com"
         }
     ],
     "require": {
@@ -34,21 +34,21 @@
     },
     "autoload": {
         "psr-4": {
-            "YourVendor\\LivewireEditor\\": "src/"
+            "Jaikumar0101\\LivewireEditor\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "YourVendor\\LivewireEditor\\Tests\\": "tests/"
+            "Jaikumar0101\\LivewireEditor\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "YourVendor\\LivewireEditor\\EditorServiceProvider"
+                "Jaikumar0101\\LivewireEditor\\EditorServiceProvider"
             ],
             "aliases": {
-                "LivewireEditor": "YourVendor\\LivewireEditor\\Facades\\LivewireEditor"
+                "LivewireEditor": "Jaikumar0101\\LivewireEditor\\Facades\\LivewireEditor"
             }
         }
     },

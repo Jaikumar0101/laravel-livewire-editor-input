@@ -1,9 +1,9 @@
 <?php
 
-namespace YourVendor\LivewireEditor\Components\Forms\Editor;
+namespace Jaikumar0101\LivewireEditor\Components\Forms\Editor;
 
 use Livewire\Component;
-use YourVendor\LivewireEditor\Traits\EditorComponent;
+use Jaikumar0101\LivewireEditor\Traits\EditorComponent;
 
 class TipTapEditor extends Component
 {

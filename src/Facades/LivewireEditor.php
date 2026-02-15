@@ -1,6 +1,6 @@
 <?php
 
-namespace YourVendor\LivewireEditor\Facades;
+namespace Jaikumar0101\LivewireEditor\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static string alpineJs()
  * @method static void resetAssets()
  *
- * @see \YourVendor\LivewireEditor\LivewireEditorManager
+ * @see \Jaikumar0101\LivewireEditor\LivewireEditorManager
  */
 class LivewireEditor extends Facade
 {
