@@ -34,7 +34,6 @@
 </div>
 
 @script
-<script>
 Alpine.data('ckeditor5Component', (options) => ({
         editorId: options.editorId,
         content: options.content,
@@ -52,9 +51,9 @@ Alpine.data('ckeditor5Component', (options) => ({
         get counterText() {
             const type = '{{ config("livewire-editor.global.counter.type", "words") }}';
             if (type === 'words') {
-                return `Words: ${this.wordCount}`;
+                return 'Words: ' + this.wordCount;
             }
-            return `Characters: ${this.charCount}`;
+            return 'Characters: ' + this.charCount;
         },
 
         get editorStyles() {
@@ -72,7 +71,7 @@ Alpine.data('ckeditor5Component', (options) => ({
             }
 
             ClassicEditor
-                .create(document.querySelector(`#${this.editorId}`), this.config)
+                .create(document.querySelector('#' + this.editorId), this.config)
                 .then(editor => {
                     this.editor = editor;
                     
@@ -186,5 +185,4 @@ Alpine.data('ckeditor5Component', (options) => ({
             }
         }
     }))
-</script>
 @endscript

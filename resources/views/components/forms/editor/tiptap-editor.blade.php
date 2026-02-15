@@ -58,7 +58,6 @@
 </div>
 
 @script
-<script>
 Alpine.data('tiptapComponent', (options) => ({
         editorId: options.editorId,
         content: options.content,
@@ -78,9 +77,9 @@ Alpine.data('tiptapComponent', (options) => ({
         get counterText() {
             const type = '{{ config("livewire-editor.global.counter.type", "words") }}';
             if (type === 'words') {
-                return `Words: ${this.wordCount}`;
+                return 'Words: ' + this.wordCount;
             }
-            return `Characters: ${this.charCount}`;
+            return 'Characters: ' + this.charCount;
         },
 
         get editorStyles() {
@@ -111,7 +110,7 @@ Alpine.data('tiptapComponent', (options) => ({
 
             try {
                 this.editor = new Editor({
-                    element: document.querySelector(`#${this.editorId}`),
+                    element: document.querySelector('#' + this.editorId),
                     extensions: editorExtensions,
                     content: this.content || '<p></p>',
                     editable: !this.readOnly,
@@ -307,5 +306,4 @@ Alpine.data('tiptapComponent', (options) => ({
             }
         }
     }))
-</script>
 @endscript

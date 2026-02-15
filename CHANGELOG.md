@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.6] - 2026-02-15
+
+### Fixed
+- **CRITICAL FIX:** Resolved "Invalid or unexpected token" Alpine expression error
+- Replaced JavaScript template literals (backticks) with string concatenation
+- Fixed conflict between Blade syntax and JavaScript inside @script directive
+- Changed all template literals like `` `Words: ${count}` `` to `'Words: ' + count`
+- Fixed `querySelector()` calls to use string concatenation instead of template literals
+
+### Technical Details
+- Template literals with `${}` inside @script were causing parse errors
+- Blade was interfering with backtick processing
+- Now using pure string concatenation throughout all Alpine components
+
 ## [1.0.5] - 2026-02-15
 
 ### Fixed
