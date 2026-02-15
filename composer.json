@@ -1,14 +1,19 @@
 {
     "name": "yourvendor/livewire-editor",
-    "description": "Laravel Livewire Editor Components Package - CKEditor, CKEditor5, and TipTap",
+    "description": "Premium Laravel Livewire WYSIWYG Editor Package with Alpine.js - CKEditor 4, CKEditor 5, and TipTap support",
     "type": "library",
     "keywords": [
         "laravel",
         "livewire",
+        "alpine",
+        "alpinejs",
         "editor",
+        "wysiwyg",
         "ckeditor",
+        "ckeditor5",
         "tiptap",
-        "wysiwyg"
+        "rich-text-editor",
+        "text-editor"
     ],
     "license": "MIT",
     "authors": [
@@ -24,7 +29,8 @@
     },
     "require-dev": {
         "orchestra/testbench": "^8.0|^9.0",
-        "phpunit/phpunit": "^10.0"
+        "phpunit/phpunit": "^10.0|^11.0",
+        "mockery/mockery": "^1.6"
     },
     "autoload": {
         "psr-4": {
@@ -45,6 +51,10 @@
                 "LivewireEditor": "YourVendor\\LivewireEditor\\Facades\\LivewireEditor"
             }
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "format": "vendor/bin/php-cs-fixer fix"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

@@ -1,131 +1,32 @@
-/* Livewire Editor Package Styles */
+/* ============================================
+   Livewire Editor Package - Enhanced Styles
+   ============================================ */
 
-/* TipTap Editor Styles */
-.tiptap-editor {
-    border: 1px solid #e5e7eb;
-    border-radius: 0.375rem;
-    padding: 1rem;
-    min-height: 200px;
-    background-color: #ffffff;
+:root {
+    --editor-primary: #3b82f6;
+    --editor-border: #e5e7eb;
+    --editor-bg: #ffffff;
+    --editor-text: #1f2937;
+    --toolbar-bg: #f9fafb;
+    --toolbar-border: #e5e7eb;
+    --toolbar-hover: #e5e7eb;
+    --toolbar-active: #dbeafe;
 }
 
-.tiptap-editor:focus {
-    outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
+/* ============================================
+   Container & Base Styles
+   ============================================ */
 
-.tiptap-editor .ProseMirror {
-    outline: none;
-}
-
-.tiptap-editor .ProseMirror > * + * {
-    margin-top: 0.75em;
-}
-
-.tiptap-editor ul,
-.tiptap-editor ol {
-    padding: 0 1rem;
-}
-
-.tiptap-editor h1,
-.tiptap-editor h2,
-.tiptap-editor h3,
-.tiptap-editor h4,
-.tiptap-editor h5,
-.tiptap-editor h6 {
-    line-height: 1.1;
-    font-weight: 600;
-}
-
-.tiptap-editor h1 {
-    font-size: 2em;
-}
-
-.tiptap-editor h2 {
-    font-size: 1.5em;
-}
-
-.tiptap-editor h3 {
-    font-size: 1.25em;
-}
-
-.tiptap-editor code {
-    background-color: rgba(97, 97, 97, 0.1);
-    color: #616161;
-    padding: 0.2em 0.4em;
-    border-radius: 0.25rem;
-    font-size: 0.875em;
-}
-
-.tiptap-editor pre {
-    background: #0d0d0d;
-    color: #fff;
-    font-family: 'JetBrainsMono', monospace;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-}
-
-.tiptap-editor pre code {
-    color: inherit;
-    padding: 0;
-    background: none;
-    font-size: 0.8rem;
-}
-
-.tiptap-editor blockquote {
-    padding-left: 1rem;
-    border-left: 3px solid rgba(13, 13, 13, 0.1);
-}
-
-.tiptap-editor hr {
-    border: none;
-    border-top: 2px solid rgba(13, 13, 13, 0.1);
-    margin: 2rem 0;
-}
-
-/* CKEditor Custom Styles */
-.cke_chrome {
-    border: 1px solid #e5e7eb !important;
-    border-radius: 0.375rem;
-}
-
-.cke_top {
-    border-bottom: 1px solid #e5e7eb !important;
-    background: #f9fafb !important;
-}
-
-/* CKEditor 5 Custom Styles */
-.ck-editor__editable {
-    min-height: 200px;
-}
-
-.ck.ck-editor__editable_inline {
-    border: 1px solid #e5e7eb;
-    border-radius: 0 0 0.375rem 0.375rem;
-}
-
-.ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.ck.ck-toolbar {
-    border: 1px solid #e5e7eb;
-    border-radius: 0.375rem 0.375rem 0 0;
-    background: #f9fafb;
-}
-
-/* General Editor Container */
 .livewire-editor-container {
     margin-bottom: 1rem;
+    width: 100%;
 }
 
 .livewire-editor-label {
     display: block;
     font-size: 0.875rem;
     font-weight: 500;
-    color: #374151;
+    color: var(--editor-text);
     margin-bottom: 0.5rem;
 }
 
@@ -135,20 +36,428 @@
     color: #dc2626;
 }
 
-/* Dark mode support */
+/* ============================================
+   TipTap Editor Styles
+   ============================================ */
+
+.tiptap-wrapper {
+    position: relative;
+}
+
+.tiptap-toolbar {
+    background: var(--toolbar-bg);
+    border: 1px solid var(--toolbar-border);
+    border-radius: 0.375rem 0.375rem 0 0;
+    padding: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.toolbar-item {
+    display: flex;
+    align-items: center;
+}
+
+.toolbar-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    background: transparent;
+    color: var(--editor-text);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.toolbar-button:hover {
+    background: var(--toolbar-hover);
+    border-color: var(--toolbar-border);
+}
+
+.toolbar-button.is-active {
+    background: var(--toolbar-active);
+    color: var(--editor-primary);
+    border-color: var(--editor-primary);
+}
+
+.toolbar-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.toolbar-separator {
+    width: 1px;
+    height: 1.5rem;
+    background: var(--toolbar-border);
+    margin: 0 0.25rem;
+}
+
+.tiptap-editor {
+    border: 1px solid var(--editor-border);
+    border-top: none;
+    border-radius: 0 0 0.375rem 0.375rem;
+    padding: 1rem;
+    min-height: 200px;
+    background: var(--editor-bg);
+    color: var(--editor-text);
+    transition: border-color 0.15s ease;
+}
+
+.tiptap-editor:focus-within {
+    outline: none;
+    border-color: var(--editor-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* ProseMirror specific styles */
+.tiptap-editor .ProseMirror {
+    outline: none;
+    min-height: 150px;
+}
+
+.tiptap-editor .ProseMirror > * + * {
+    margin-top: 0.75em;
+}
+
+.tiptap-editor .ProseMirror h1,
+.tiptap-editor .ProseMirror h2,
+.tiptap-editor .ProseMirror h3,
+.tiptap-editor .ProseMirror h4,
+.tiptap-editor .ProseMirror h5,
+.tiptap-editor .ProseMirror h6 {
+    line-height: 1.1;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.tiptap-editor .ProseMirror h1 { font-size: 2.25em; }
+.tiptap-editor .ProseMirror h2 { font-size: 1.875em; }
+.tiptap-editor .ProseMirror h3 { font-size: 1.5em; }
+.tiptap-editor .ProseMirror h4 { font-size: 1.25em; }
+.tiptap-editor .ProseMirror h5 { font-size: 1.125em; }
+.tiptap-editor .ProseMirror h6 { font-size: 1em; }
+
+.tiptap-editor .ProseMirror p {
+    margin: 0.5em 0;
+}
+
+.tiptap-editor .ProseMirror ul,
+.tiptap-editor .ProseMirror ol {
+    padding-left: 1.5rem;
+    margin: 0.5em 0;
+}
+
+.tiptap-editor .ProseMirror li {
+    margin: 0.25em 0;
+}
+
+.tiptap-editor .ProseMirror code {
+    background-color: rgba(97, 97, 97, 0.1);
+    color: #616161;
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    font-family: 'Monaco', 'Courier New', monospace;
+}
+
+.tiptap-editor .ProseMirror pre {
+    background: #282c34;
+    color: #abb2bf;
+    font-family: 'Monaco', 'Courier New', monospace;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1em 0;
+}
+
+.tiptap-editor .ProseMirror pre code {
+    color: inherit;
+    padding: 0;
+    background: none;
+    font-size: 0.875em;
+}
+
+.tiptap-editor .ProseMirror blockquote {
+    padding-left: 1rem;
+    border-left: 3px solid var(--editor-border);
+    margin: 1em 0;
+    font-style: italic;
+}
+
+.tiptap-editor .ProseMirror hr {
+    border: none;
+    border-top: 2px solid var(--editor-border);
+    margin: 2rem 0;
+}
+
+.tiptap-editor .ProseMirror a {
+    color: var(--editor-primary);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.tiptap-editor .ProseMirror img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.375rem;
+}
+
+.tiptap-editor .ProseMirror table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+    overflow: hidden;
+}
+
+.tiptap-editor .ProseMirror table td,
+.tiptap-editor .ProseMirror table th {
+    border: 1px solid var(--editor-border);
+    padding: 0.5rem;
+    vertical-align: top;
+    position: relative;
+}
+
+.tiptap-editor .ProseMirror table th {
+    background: var(--toolbar-bg);
+    font-weight: 700;
+    text-align: left;
+}
+
+.tiptap-editor .ProseMirror table .selectedCell {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+/* ============================================
+   CKEditor 5 Custom Styles
+   ============================================ */
+
+.ckeditor5-editor {
+    border-radius: 0.375rem;
+}
+
+.ck.ck-editor {
+    border-radius: 0.375rem;
+}
+
+.ck.ck-toolbar {
+    border: 1px solid var(--toolbar-border);
+    border-radius: 0.375rem 0.375rem 0 0;
+    background: var(--toolbar-bg);
+    padding: 0.5rem;
+}
+
+.ck.ck-toolbar .ck-toolbar__items {
+    flex-wrap: wrap;
+}
+
+.ck.ck-button {
+    border-radius: 0.25rem;
+}
+
+.ck.ck-button:hover {
+    background: var(--toolbar-hover);
+}
+
+.ck.ck-button.ck-on {
+    background: var(--toolbar-active);
+    color: var(--editor-primary);
+}
+
+.ck.ck-editor__editable_inline {
+    border: 1px solid var(--editor-border);
+    border-top: none;
+    border-radius: 0 0 0.375rem 0.375rem;
+    background: var(--editor-bg);
+    color: var(--editor-text);
+    min-height: 200px;
+    padding: 1rem;
+}
+
+.ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-focused {
+    border-color: var(--editor-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.ck.ck-content {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* ============================================
+   CKEditor 4 Custom Styles
+   ============================================ */
+
+.cke_chrome {
+    border: 1px solid var(--editor-border) !important;
+    border-radius: 0.375rem !important;
+    overflow: hidden;
+}
+
+.cke_top {
+    border-bottom: 1px solid var(--toolbar-border) !important;
+    background: var(--toolbar-bg) !important;
+    padding: 0.25rem !important;
+}
+
+.cke_bottom {
+    border-top: 1px solid var(--toolbar-border) !important;
+    background: var(--toolbar-bg) !important;
+}
+
+.cke_toolgroup {
+    border-radius: 0.25rem !important;
+}
+
+.cke_button {
+    border-radius: 0.25rem !important;
+}
+
+.cke_button_on {
+    background: var(--toolbar-active) !important;
+}
+
+.cke_wysiwyg_frame,
+.cke_wysiwyg_div {
+    background: var(--editor-bg) !important;
+    color: var(--editor-text) !important;
+}
+
+/* ============================================
+   Counter & Status Indicators
+   ============================================ */
+
+.editor-counter {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.875rem;
+    color: #6b7280;
+    padding: 0.25rem 0;
+}
+
+.auto-save-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    padding: 0.25rem 0;
+}
+
+/* ============================================
+   Dark Mode Support
+   ============================================ */
+
 @media (prefers-color-scheme: dark) {
-    .tiptap-editor {
-        background-color: #1f2937;
-        border-color: #374151;
-        color: #f9fafb;
+    :root {
+        --editor-primary: #60a5fa;
+        --editor-border: #374151;
+        --editor-bg: #1f2937;
+        --editor-text: #f9fafb;
+        --toolbar-bg: #111827;
+        --toolbar-border: #374151;
+        --toolbar-hover: #374151;
+        --toolbar-active: #1e40af;
     }
 
-    .tiptap-editor:focus {
-        border-color: #60a5fa;
-        box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+    .tiptap-editor .ProseMirror pre {
+        background: #0d1117;
+        color: #c9d1d9;
+    }
+
+    .tiptap-editor .ProseMirror code {
+        background-color: rgba(240, 246, 252, 0.1);
+        color: #e5e7eb;
     }
 
     .livewire-editor-label {
-        color: #e5e7eb;
+        color: var(--editor-text);
+    }
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 640px) {
+    .tiptap-toolbar {
+        padding: 0.25rem;
+    }
+
+    .toolbar-button {
+        min-width: 1.75rem;
+        height: 1.75rem;
+        font-size: 0.75rem;
+    }
+
+    .tiptap-editor {
+        padding: 0.75rem;
+    }
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.auto-save-indicator[x-show="isSaving"] {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+.editor-disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.editor-loading {
+    position: relative;
+}
+
+.editor-loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+
+@media print {
+    .tiptap-toolbar,
+    .editor-counter,
+    .auto-save-indicator {
+        display: none !important;
+    }
+
+    .tiptap-editor {
+        border: none !important;
+        box-shadow: none !important;
     }
 }
