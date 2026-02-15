@@ -69,8 +69,13 @@ class CkEditor extends Component
     public function render()
     {
         return view('livewire-editor::components.forms.editor.ckeditor', [
+            'editorId' => $this->editorId,
+            'content' => $this->content,
             'editorConfig' => $this->getEditorConfig(),
             'themeStyles' => $this->getThemeStyles(),
+            'readOnly' => $this->readOnly,
+            'showCounter' => $this->showCounter,
+            'autoSave' => $this->autoSave,
         ]);
     }
 }

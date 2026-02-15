@@ -60,10 +60,16 @@ class TipTapEditor extends Component
     public function render()
     {
         return view('livewire-editor::components.forms.editor.tiptap-editor', [
+            'editorId' => $this->editorId,
+            'content' => $this->content,
             'extensions' => $this->getExtensions(),
             'toolbarButtons' => $this->getToolbarButtons(),
             'bubbleMenuButtons' => $this->getBubbleMenuButtons(),
             'themeStyles' => $this->getThemeStyles(),
+            'readOnly' => $this->readOnly,
+            'showCounter' => $this->showCounter,
+            'autoSave' => $this->autoSave,
+            'showToolbar' => $this->showToolbar,
         ]);
     }
 }

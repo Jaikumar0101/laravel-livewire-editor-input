@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-02-15
+
+### Fixed
+- **CRITICAL FIX:** Resolved "Undefined variable $editorId" error in all blade templates
+- All component `render()` methods now explicitly pass required variables (`$editorId`, `$content`, `$readOnly`, `$showCounter`, `$autoSave`) to views
+- Fixed CkEditor, CkEditor5, and TipTapEditor components to properly expose all properties to blade templates
+
+### Technical Details
+- Updated `CkEditor::render()` to pass 7 variables instead of 2
+- Updated `CkEditor5::render()` to pass 7 variables instead of 2  
+- Updated `TipTapEditor::render()` to pass 10 variables instead of 4
+
 ## [1.0.2] - 2026-02-15
 
 ### Documentation
