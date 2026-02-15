@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-02-15
+
+### Fixed
+- Fixed dependency constraint for `illuminate/support` from `^10.48|^11.0` to `^10.0|^11.0` to support all Laravel 10.x versions
+- Removed `--prefer-stable` flag from GitHub Actions workflow for better Composer compatibility
+- Removed Laravel 12 support (not yet available in orchestra/testbench)
+
+### Changed
+- Updated illuminate/support constraint to support Laravel 10.0+ (previously only 10.48+)
+
+## [1.0.0] - 2026-02-15
+
+### Added
+- Initial release with comprehensive test suite (92 tests, 137 assertions)
+- Complete namespace setup for jaikumar0101/livewire-editor-input
+
 ## [2.0.0] - 2025-02-15
 
 ### Added
