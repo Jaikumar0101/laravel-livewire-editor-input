@@ -68,6 +68,8 @@ php artisan vendor:publish --tag=livewire-editor
 
 ### 1. Add Assets to Your Layout
 
+> **🚨 CRITICAL:** You MUST add both `@livewireEditorAssets` in `<head>` AND `@stack('scripts')` before `</body>`.
+
 ```blade
 <!DOCTYPE html>
 <html>
@@ -86,6 +88,9 @@ php artisan vendor:publish --tag=livewire-editor
     {{ $slot }}
     
     @livewireScripts
+    
+    {{-- IMPORTANT: Required for Alpine components to work --}}
+    @stack('scripts')
 </body>
 </html>
 ```
@@ -588,6 +593,43 @@ public function toggleReadOnly()
 ```
 
 **Why:** These are Livewire components, not Blade components. Always use `<livewire:...>` syntax.
+
+### ❌ Error: "Alpine Expression Error: ckeditorComponent is not defined"
+
+**Problem:** Missing `@stack('scripts')` in your layout or `@livewireEditorAssets` not included.
+
+**Solution:** Your layout MUST have:
+
+```blade
+<head>
+    @livewireEditorAssets('ckeditor')  <!-- In head -->
+    @livewireStyles
+</head>
+<body>
+    @livewireScripts
+    @stack('scripts')  <!-- REQUIRED before </body> -->
+</body>
+```
+
+**Why:** The Alpine component definitions are pushed to the `scripts` stack and won't execute without `@stack('scripts')`.
+
+### ❌ Views Published and Out of Date
+
+**Problem:** Getting errors after updating the package.
+
+**Solution:** Delete published views to use package views:
+
+```bash
+rm -rf resources/views/vendor/livewire-editor
+```
+
+Or re-publish with `--force`:
+
+```bash
+php artisan vendor:publish --tag=livewire-editor-views --force
+```
+
+**Why:** Published views in your project override package views. Updates don't affect published files.
 
 ### Editors Not Loading
 
