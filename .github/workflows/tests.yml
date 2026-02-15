@@ -85,7 +85,7 @@ jobs:
         timeout_minutes: 10
         max_attempts: 3
         retry_on: error
-        command: composer install --prefer-dist --no-interaction --no-progress --prefer-stable
+        command: composer install --prefer-dist --no-interaction --no-progress
 
     - name: Execute tests with coverage
       run: vendor/bin/phpunit --coverage-clover coverage.xml
