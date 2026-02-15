@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-02-15
+
+### Documentation
+- **Added prominent usage warnings** to prevent Blade/Livewire component syntax confusion
+- Added detailed "Common Usage Examples" section with 6 practical scenarios
+- Added troubleshooting entry for "Undefined variable $editorId" error
+- Clarified that components must use `<livewire:...>` syntax, NOT `<x-livewire-editor::...>`
+- Added usage notes in Quick Start and Available Editors sections
+
+### Fixed
+- Documentation now clearly shows correct Livewire component usage to prevent `$editorId` undefined errors
+
 ## [1.0.1] - 2026-02-15
 
 ### Fixed
