@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.7] - 2026-02-15
+
+### Fixed
+- **CRITICAL FIX:** Resolved "Alpine Expression Error: Unexpected token '}'" and "ckeditorComponent is not defined"
+- Refactored all editors to use inline Alpine.js data instead of `Alpine.data()` registration pattern
+- Eliminated timing issues where Alpine components tried to use data before it was registered via `wire:effects`
+
+### Changed
+- CKEditor blade template: Replaced `Alpine.data('ckeditorComponent')` with inline `x-data` definition
+- CKEditor5 blade template: Replaced `Alpine.data('ckeditor5Component')` with inline `x-data` definition
+- TipTap blade template: Replaced `Alpine.data('tiptapComponent')` with inline `x-data` definition
+- Removed all `@script` directives - no longer needed with inline approach
+
+### Technical Details
+- Inline Alpine data is available immediately when component initializes
+- No dependency on script execution order or `wire:effects` timing
+- Simpler execution flow - Alpine parses and initializes components in one pass
+- Matches recommended pattern for Livewire + Alpine integration
+
 ## [1.0.6] - 2026-02-15
 
 ### Fixed
