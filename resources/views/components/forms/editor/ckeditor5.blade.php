@@ -33,10 +33,9 @@
     </div>
 </div>
 
-@once
+@script
 <script>
-document.addEventListener('alpine:init', () => {
-    Alpine.data('ckeditor5Component', (options) => ({
+Alpine.data('ckeditor5Component', (options) => ({
         editorId: options.editorId,
         content: options.content,
         config: options.config,
@@ -186,7 +185,6 @@ document.addEventListener('alpine:init', () => {
                     .catch(error => console.error(error));
             }
         }
-    }));
-});
+    }))
 </script>
-@endonce
+@endscript

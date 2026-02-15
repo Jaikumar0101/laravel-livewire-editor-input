@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.5] - 2026-02-15
+
+### Fixed
+- **CRITICAL FIX:** Resolved "Multiple root elements detected" Livewire error
+- Changed from `@once` to Livewire's `@script` directive in all blade templates
+- Removed `document.addEventListener('alpine:init')` wrapper (handled automatically by @script)
+
+### Technical Details
+- Livewire 3 requires components to have only one root HTML element
+- The `@script` directive doesn't count as a root element, unlike `@once` with `<script>` tags
+- Alpine component definitions now register properly without creating multiple roots
+
 ## [1.0.4] - 2026-02-15
 
 ### Fixed

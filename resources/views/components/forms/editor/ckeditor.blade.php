@@ -32,10 +32,9 @@
     </div>
 </div>
 
-@once
+@script
 <script>
-document.addEventListener('alpine:init', () => {
-    Alpine.data('ckeditorComponent', (options) => ({
+Alpine.data('ckeditorComponent', (options) => ({
         editorId: options.editorId,
         content: options.content,
         config: options.config,
@@ -150,7 +149,6 @@ document.addEventListener('alpine:init', () => {
                 console.log('CKEditor 4 destroyed');
             }
         }
-    }));
-});
+    }))
 </script>
-@endonce
+@endscript

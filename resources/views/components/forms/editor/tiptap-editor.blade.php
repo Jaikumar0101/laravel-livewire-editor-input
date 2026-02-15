@@ -57,10 +57,9 @@
     </div>
 </div>
 
-@once
+@script
 <script>
-document.addEventListener('alpine:init', () => {
-    Alpine.data('tiptapComponent', (options) => ({
+Alpine.data('tiptapComponent', (options) => ({
         editorId: options.editorId,
         content: options.content,
         extensions: options.extensions,
@@ -307,7 +306,6 @@ document.addEventListener('alpine:init', () => {
                 console.log('TipTap destroyed');
             }
         }
-    }));
-});
+    }))
 </script>
-@endonce
+@endscript
