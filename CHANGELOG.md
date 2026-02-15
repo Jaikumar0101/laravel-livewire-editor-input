@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.4] - 2026-02-15
+
+### Fixed
+- **CRITICAL FIX:** Changed Alpine component definition loading from `@pushOnce('scripts')` to `@once`
+- No longer requires `@stack('scripts')` in layout - Alpine components now load automatically
+- Resolves "ckeditorComponent is not defined" errors without additional layout configuration
+
+### Changed
+- All three blade templates (ckeditor, ckeditor5, tiptap-editor) now use `@once` instead of `@pushOnce`
+- Simplified installation - only requires `@livewireEditorAssets` in `<head>`
+
+### Documentation
+- Updated Quick Start guide to remove `@stack('scripts')` requirement
+- Simplified troubleshooting for Alpine component errors
+- Added clearer CRITICAL warnings about required directives
+
 ## [1.0.3] - 2026-02-15
 
 ### Fixed

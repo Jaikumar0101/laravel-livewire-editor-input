@@ -68,7 +68,7 @@ php artisan vendor:publish --tag=livewire-editor
 
 ### 1. Add Assets to Your Layout
 
-> **🚨 CRITICAL:** You MUST add both `@livewireEditorAssets` in `<head>` AND `@stack('scripts')` before `</body>`.
+> **🚨 CRITICAL:** You MUST add `@livewireEditorAssets` in your layout's `<head>` section.
 
 ```blade
 <!DOCTYPE html>
@@ -88,9 +88,6 @@ php artisan vendor:publish --tag=livewire-editor
     {{ $slot }}
     
     @livewireScripts
-    
-    {{-- IMPORTANT: Required for Alpine components to work --}}
-    @stack('scripts')
 </body>
 </html>
 ```
@@ -596,9 +593,9 @@ public function toggleReadOnly()
 
 ### ❌ Error: "Alpine Expression Error: ckeditorComponent is not defined"
 
-**Problem:** Missing `@stack('scripts')` in your layout or `@livewireEditorAssets` not included.
+**Problem:** Missing `@livewireEditorAssets` in your layout.
 
-**Solution:** Your layout MUST have:
+**Solution:** Add the assets directive to your layout's `<head>`:
 
 ```blade
 <head>
@@ -607,11 +604,13 @@ public function toggleReadOnly()
 </head>
 <body>
     @livewireScripts
-    @stack('scripts')  <!-- REQUIRED before </body> -->
 </body>
 ```
 
-**Why:** The Alpine component definitions are pushed to the `scripts` stack and won't execute without `@stack('scripts')`.
+**Additional Checks:**
+1. Clear browser cache
+2. Check browser console for script loading errors
+3. Verify Alpine.js is loading (check Network tab)
 
 ### ❌ Views Published and Out of Date
 

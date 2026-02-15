@@ -32,7 +32,7 @@
     </div>
 </div>
 
-@pushOnce('scripts')
+@once
 <script>
 document.addEventListener('alpine:init', () => {
     Alpine.data('ckeditorComponent', (options) => ({
@@ -153,4 +153,4 @@ document.addEventListener('alpine:init', () => {
     }));
 });
 </script>
-@endPushOnce
+@endonce

@@ -57,7 +57,7 @@
     </div>
 </div>
 
-@pushOnce('scripts')
+@once
 <script>
 document.addEventListener('alpine:init', () => {
     Alpine.data('tiptapComponent', (options) => ({
@@ -310,4 +310,4 @@ document.addEventListener('alpine:init', () => {
     }));
 });
 </script>
-@endPushOnce
+@endonce
